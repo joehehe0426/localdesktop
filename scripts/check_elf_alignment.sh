@@ -41,7 +41,7 @@ if ! [ -f "${dir}" -o -d "${dir}" ]; then
 fi
 
 if [[ "${dir}" == *.apk ]]; then
-  trap 'cleanup_trap' EXIT
+  trap 'cleanup_trap $?' EXIT
 
   echo
   echo "Recursively analyzing $dir"
@@ -66,7 +66,7 @@ if [[ "${dir}" == *.apk ]]; then
 fi
 
 if [[ "${dir}" == *.apex ]]; then
-  trap 'cleanup_trap' EXIT
+  trap 'cleanup_trap $?' EXIT
 
   echo
   echo "Recursively analyzing $dir"

@@ -18,10 +18,5 @@ where
         .pb_expect("Failed to attach thread");
 
     // Call the provided JNI function
-    let res = jni_function(&mut env, &android_app);
-
-    // Detach the current thread from the JVM
-    unsafe { vm.detach_current_thread() };
-
-    res
+    jni_function(&mut env, &android_app)
 }

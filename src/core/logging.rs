@@ -14,12 +14,27 @@ where
     E: std::fmt::Debug,
 {
     fn pb_expect(self, msg: &str) -> T {
-        self.expect(&log_format("POLAR BEAR EXPECTATION", msg))
+        self.unwrap_or_else(|_| panic!("{}", log_format("POLAR BEAR EXPECTATION", msg)))
     }
 }
 
 impl<T> PolarBearExpectation<T> for Option<T> {
     fn pb_expect(self, msg: &str) -> T {
-        self.expect(&log_format("POLAR BEAR EXPECTATION", msg))
+        self.unwrap_or_else(|| panic!("{}", log_format("POLAR BEAR EXPECTATION", msg)))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_log_format() {
+        let title = "TEST TITLE";
+        let content = "Test content";
+        let formatted = log_format(title, content);
+        
+        assert!(formatted.contains("*** *** *** [TEST TITLE] *** *** ***"));
+        assert!(formatted.contains("Test content"));
     }
 }

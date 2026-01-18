@@ -27,7 +27,7 @@ impl ApplicationHandler for PolarBearApp {
                         format!("file:///android_asset/setup-progress.html?port={}", port)
                     }
                     ErrorVariant::Unsupported => {
-                        format!("file:///android_asset/unsupported.html")
+                        "file:///android_asset/unsupported.html".to_string()
                     }
                 };
                 let android_app = self.frontend.android_app.clone();
