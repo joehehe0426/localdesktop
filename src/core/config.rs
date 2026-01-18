@@ -165,8 +165,7 @@ pub fn parse_config(full_config_path: String) -> LocalConfig {
         return config;
     }
     // Config malformed, use the default config and the user can modify it again
-    let default_config = LocalConfig::default();
-    default_config
+    LocalConfig::default()
 }
 
 #[cfg(test)]
