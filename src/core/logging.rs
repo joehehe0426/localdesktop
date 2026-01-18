@@ -23,3 +23,18 @@ impl<T> PolarBearExpectation<T> for Option<T> {
         self.unwrap_or_else(|| panic!("{}", log_format("POLAR BEAR EXPECTATION", msg)))
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_log_format() {
+        let title = "TEST TITLE";
+        let content = "Test content";
+        let formatted = log_format(title, content);
+        
+        assert!(formatted.contains("*** *** *** [TEST TITLE] *** *** ***"));
+        assert!(formatted.contains("Test content"));
+    }
+}
